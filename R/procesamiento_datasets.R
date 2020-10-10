@@ -64,10 +64,10 @@ limpia_campos <- function(dataset, campos, col_fallos) {
 #'
 #' @return dataset con nuevas columnas lon, lat con las coordenadas
 #'
-geolocaliza_centros <- function(dataset, codpostales_file_id,
-                                col_codpostal, col_municipio, col_provincia, col_comautonoma, col_fallo) {
+geolocaliza_centros <- function(dataset, col_codpostal,
+                                col_municipio, col_provincia, col_comautonoma, col_fallo) {
 
-  codpostales <- get_drive_sheet(file_id=codpostales_file_id) %>%
+  codpostales <- get_drive_sheet(file_id=get_codpostales_file_id()) %>%
     dplyr::filter(startsWith(codpostal, id_provincia)) %>%
     dplyr::transmute(codpostal, lon, lat, codpostales_provincia = provincia, codpostales_ccaa = ccaa) %>%
     unique()

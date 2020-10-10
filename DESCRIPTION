@@ -13,6 +13,7 @@ Depends:
     R (>= 3.5)
 Imports:
     magrittr (>= 1.5),
+    rjson (>= 0.2.20),
     dplyr (>= 0.8),
     stringr (>= 1.4.0),
     googledrive (>= 1.0.0),

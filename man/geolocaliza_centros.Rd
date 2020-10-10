@@ -8,7 +8,6 @@ Si hay algún fallo de geolocalización informa en la columna de fallo}
 \usage{
 geolocaliza_centros(
   dataset,
-  codpostales_file_id,
   col_codpostal,
   col_municipio,
   col_provincia,
@@ -19,8 +18,6 @@ geolocaliza_centros(
 \arguments{
 \item{dataset}{datos a geolocalizar}
 
-\item{codpostales_file_id}{ID de Google Drive del fichero donde está el listado de códigos postales válidos}
-
 \item{col_codpostal}{nombre de la columna con el código postal}
 
 \item{col_municipio}{nombre de la columna con el municipio}
@@ -30,6 +27,8 @@ geolocaliza_centros(
 \item{col_comautonoma}{nombre de la columna con la comunidad autónoma}
 
 \item{col_fallo}{nombre de la columna donde se registran los fallos}
+
+\item{codpostales_file_id}{ID de Google Drive del fichero donde está el listado de códigos postales válidos}
 }
 \value{
 dataset con nuevas columnas lon, lat con las coordenadas
