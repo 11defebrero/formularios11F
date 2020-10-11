@@ -48,3 +48,19 @@ upload_drive_sheet <- function(dataset, file_id, filename = NULL) {
 
   message("\nDone.")
 }
+
+
+
+#' Upload/update local file to Drive folder
+#'
+#' @param local_path ruta del fichero a subir
+#' @param drive_folder_id ID de Google Drive de la carpeta donde subir el fichero
+#'
+#' @export
+upload_file_to_drive <- function(local_path, drive_folder_id) {
+
+  drive_path <- googledrive::as_id(drive_folder_id)
+  googledrive::drive_put(media=local_path, path=drive_path, name=basename(local_path))
+
+  message("\nDone.")
+}

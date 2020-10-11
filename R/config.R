@@ -10,7 +10,7 @@ leer_config <- function(config_file) {
 
   config <- rjson::fromJSON(file=config_file)
 
-  Sys.setenv("11F_CODPOSTALES_FILE_ID" = config$id_sheets_googledrive$codpostales)
+  Sys.setenv("11F_CODPOSTALES_FILE_ID" = config$ids_googledrive$codpostales)
 
   return(config)
 
