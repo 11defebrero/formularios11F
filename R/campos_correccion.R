@@ -92,6 +92,17 @@ corrige_videollamada <- function(opciones_videollamada) {
 
 
 
+#' Corrección campo de herramientas online
+#'
+#' @param herramientas_online vector de herramientas online
+#'
+#' @return vector de enumeraciones de herramientas online corregidas
+corrige_herramientas_online <- function(herramientas_online) {
+  return(herramientas_online)
+}
+
+
+
 #' Corrección campo de inglés
 #'
 #' @param opciones_ingles vector de opciones de charla en inglés

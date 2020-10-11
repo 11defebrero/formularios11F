@@ -62,8 +62,9 @@ texto_solicitud_charla <- function(info) {
     "**Dirección**: ", info$direccion, "\n\n",
     "**Niveles solicitados**: ", info$niveles, "\n\n",
     "**Tipos de charla solicitados**: ", info$tipos, "\n\n",
-    "**Aforo**: ", info$aforo, "\n\n",
-    "**Puede ser por videollamada**: ", info$videollamada, "\n\n",
+    "**Nº Asistentes**: ", info$aforo, "\n\n",
+    # "**Puede ser por videollamada**: ", info$videollamada, "\n\n",
+    "**Herramienta para videollamada (si fuese necesario)**: ", info$herramientas_online, "\n\n",
     "**Puede ser en inglés**: ", info$ingles, "\n\n",
     ifelse(is.na(info$comentario), "",
            paste0("**Comentarios**: ", info$comentario, "\n\n"))

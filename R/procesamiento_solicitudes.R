@@ -6,12 +6,11 @@ COLS_SOLICITUDES_CHARLAS <- c(
   "timestamp",
   "nombre", "email", "centro",
   "niveles", "tipos", "aforo",
-  "videollamada", "ingles",
+  "herramientas_online", "ingles",
   "com_autonoma", "provincia", "localidad", "direccion", "codpostal",
   "web", "telefono",
   "comentario",
-  "lon", "lat",
-  "pdup"
+  "lon", "lat"
 )
 
 
@@ -34,13 +33,13 @@ get_solicitudes_charlas_original <- function(file_id, filename=NULL) {
       fallos = "",
       fallos_geolocalizacion = "",
       timestamp = as.POSIXct(Timestamp, format="%d/%m/%Y %T"),
-      nombre = `Nombre y apellidos de la persona que hace la solicitud`,
       email = `Email address`,
+      nombre = `Nombre y apellidos de la persona que hace la solicitud`,
       centro = `Nombre del centro educativo`,
       niveles = `Nivel o niveles para los que se solicita la charla`,
       tipos = `¿Qué tipo de charlas preferís?`,
-      aforo = Aforo,
-      videollamada = `¿Estaríais interesados/as en una charla via Skype?`,
+      aforo = `Número estimado de asistentes`,
+      herramientas_online = `¿Qué herramienta os gustaría que se utilizara preferentemente si la charla fuese online?`,
       ingles = `¿Podría ser en inglés?`,
       com_autonoma = `Comunidad autónoma`,
       provincia = Provincia,
@@ -52,7 +51,7 @@ get_solicitudes_charlas_original <- function(file_id, filename=NULL) {
       comentario = `¿Hay algo más que quieras añadir?`
     ) %>%
     genera_id() %>%
-    dplyr::select(setdiff(COLS_SOLICITUDES_CHARLAS, c("lon", "lat", "pdup")))
+    dplyr::select(setdiff(COLS_SOLICITUDES_CHARLAS, c("lon", "lat")))
 
 }
 
@@ -114,7 +113,7 @@ limpia_solicitudes_charlas <- function(dataset) {
   limpia_campos(dataset,
                 campos = setdiff(COLS_SOLICITUDES_CHARLAS,
                                  c("id", "procesado", "fallos", "fallos_geolocalizacion",
-                                   "timestamp", "lon", "lat", "pdup")),
+                                   "timestamp", "lon", "lat")),
                 col_fallos = "fallos")
 
 }
@@ -137,6 +136,49 @@ geolocaliza_solicitudes_charlas <- function(dataset) {
                       col_comautonoma = "com_autonoma",
                       col_fallo = "fallos_geolocalizacion")
 
+}
+
+
+
+#' Marca duplicados del dataset de solicitudes de charlas, en la columna "procesado"
+#'
+#' @param dataset datos de solicitudes de charlas
+#'
+#' @return dataset corregido
+#' @export
+marca_duplicados_solicitudes_charlas <- function(dataset) {
+
+  dataset %>%
+    dplyr::mutate(
+      procesado = ifelse(es_posible_duplicado_solicitud_charla(dataset), "POSIBLE DUPLICADO (EMAIL)", procesado),
+      procesado = ifelse(es_duplicado_solicitud_charla(dataset), "DUPLICADO", procesado)
+    )
+
+}
+
+
+
+#' Indica las solicitudes de charla que son duplicados,
+#' manteniendo la última como la correcta
+#'
+#' @param dataset datos de solicitudes de charlas
+#'
+#' @return vector lógico indicando si cada solicitud es un duplicado o no
+es_duplicado_solicitud_charla <- function(dataset) {
+  campos_combrobacion <- c("nombre", "email", "centro", "niveles", "tipos", "telefono")
+  duplicated(dataset[, campos_combrobacion], fromLast=TRUE)
+}
+
+
+
+#' Indica las solicitudes de charla que son posibles duplicados,
+#' manteniendo la última como la correcta
+#'
+#' @param dataset datos de solicitudes de charlas
+#'
+#' @return vector lógico indicando si cada solicitud es un posible duplicado o no
+es_posible_duplicado_solicitud_charla <- function(dataset) {
+  duplicated(dataset$email, fromLast=TRUE) | duplicated(dataset$email, fromLast=FALSE)
 }
 
 
@@ -183,7 +225,7 @@ solicitadas_restantes <- solicitadas_restantes[ ,
                                           "niveles", "tipos", "aforo", "videollamada",
                                           "ingles", "com_autonoma", "provincia",  "localidad",
                                           "direccion", "codpostal", "web", "telefono",
-                                          "comentario", "lon", "lat", "pdup") ]
+                                          "comentario", "lon", "lat") ]
 
 return(solicitadas_restantes)
 

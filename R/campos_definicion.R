@@ -109,6 +109,10 @@ FUNCIONES_PROCESAMIENTO_CAMPOS <- list(
     "fun_corrige" = function(...) corrige_videollamada(...),
     "fun_valida" = function(...) es_valido_videollamada(...)
   ),
+  "herramientas_online" = list(
+    "fun_corrige" = function(...) corrige_herramientas_online(...),
+    "fun_valida" = function(...) es_valido_herramientas_online(...)
+  ),
   "web" = list(
     "fun_corrige" = function(...) corrige_web(...),
     "fun_valida" = function(...) es_valido_web(...)

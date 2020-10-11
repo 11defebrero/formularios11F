@@ -73,6 +73,16 @@ es_valido_videollamada <- function(opciones_videollamada) {
 }
 
 
+#' Validación campo de herramientas online
+#'
+#' @param herramientas_online vector de herramientas online
+#'
+#' @return vector de booleans que indica si cada enumeración de herramientas online es válida o no
+es_valido_herramientas_online <- function(herramientas_online) {
+  rep(TRUE, length(herramientas_online))
+}
+
+
 #' Validación campo de inglés
 #'
 #' @param opciones_ingles vector de opciones de charla en inglés
