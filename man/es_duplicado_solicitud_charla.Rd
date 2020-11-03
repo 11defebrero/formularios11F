@@ -5,7 +5,7 @@
 \title{Indica las solicitudes de charla que son duplicados,
 manteniendo la última como la correcta}
 \usage{
-es_duplicado_solicitud_charla(dataset)
+es_duplicado_solicitud_charla(dataset, campos_combrobacion)
 }
 \arguments{
 \item{dataset}{datos de solicitudes de charlas}

@@ -97,3 +97,27 @@ geolocaliza_centros <- function(dataset, col_codpostal,
 
 
 
+#' Indica el ID original en los registros duplicados
+#' El original es el primer registro
+#'
+#' @param dataset dataset a comprobar
+#' @param campos_combrobacion nombres de columnas a incluir en la comprobación
+#'
+#' @return vector con ID original si es duplicado, NA si no
+#'
+original_vs_duplicados <- function(dataset, campos_combrobacion) {
+
+  original_ids <- dataset %>%
+    dplyr::group_by_at(campos_combrobacion) %>%
+    dplyr::mutate(
+      original = id[1] # El original es el primer registro
+    ) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(
+      original = ifelse(id == original, NA, original)
+    ) %>%
+    dplyr::pull(original)
+
+  return(original_ids)
+}
+

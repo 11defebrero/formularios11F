@@ -2,7 +2,7 @@
 
 COLS_SOLICITUDES_CHARLAS <- c(
   "id",
-  "procesado", "fallos", "fallos_geolocalizacion",
+  "procesado", "fallos", "fallos_geolocalizacion", "id_referencia",
   "timestamp",
   "nombre", "email", "centro",
   "niveles", "tipos", "aforo",
@@ -32,6 +32,7 @@ get_solicitudes_charlas_original <- function(file_id, filename=NULL) {
       procesado = "",
       fallos = "",
       fallos_geolocalizacion = "",
+      id_referencia = "",
       timestamp = as.POSIXct(Timestamp, format="%d/%m/%Y %T"),
       email = `Email address`,
       nombre = `Nombre y apellidos de la persona que hace la solicitud`,
@@ -112,7 +113,8 @@ limpia_solicitudes_charlas <- function(dataset) {
 
   limpia_campos(dataset,
                 campos = setdiff(COLS_SOLICITUDES_CHARLAS,
-                                 c("id", "procesado", "fallos", "fallos_geolocalizacion",
+                                 c("id", "procesado",
+                                   "fallos", "fallos_geolocalizacion", "id_referencia",
                                    "timestamp", "lon", "lat")),
                 col_fallos = "fallos")
 
@@ -148,10 +150,17 @@ geolocaliza_solicitudes_charlas <- function(dataset) {
 #' @export
 marca_duplicados_solicitudes_charlas <- function(dataset) {
 
+  campos_duplicado <- c("nombre", "email", "centro", "niveles", "tipos", "telefono")
+  campos_posible <- c("email")
+
   dataset %>%
     dplyr::mutate(
-      procesado = ifelse(es_posible_duplicado_solicitud_charla(dataset), "POSIBLE DUPLICADO (EMAIL)", procesado),
-      procesado = ifelse(es_duplicado_solicitud_charla(dataset), "DUPLICADO", procesado)
+      id_referencia = referencia_duplicado_solicitud_charla(dataset, campos_duplicado),
+      id_referencia_posible = referencia_duplicado_solicitud_charla(dataset, campos_posible),
+      duplicado_seguro = !is.na(id_referencia),
+      duplicado_posible = !is.na(id_referencia_posible),
+      id_referencia = dplyr::coalesce(id_referencia, id_referencia_posible),
+      id_referencia_posible = NULL
     )
 
 }
@@ -164,21 +173,25 @@ marca_duplicados_solicitudes_charlas <- function(dataset) {
 #' @param dataset datos de solicitudes de charlas
 #'
 #' @return vector lógico indicando si cada solicitud es un duplicado o no
-es_duplicado_solicitud_charla <- function(dataset) {
-  campos_combrobacion <- c("nombre", "email", "centro", "niveles", "tipos", "telefono")
-  duplicated(dataset[, campos_combrobacion], fromLast=TRUE)
+es_duplicado_solicitud_charla <- function(dataset, campos_combrobacion) {
+  !is.na(referencia_duplicado_solicitud_charla(dataset, campos_combrobacion))
 }
 
 
 
-#' Indica las solicitudes de charla que son posibles duplicados,
-#' manteniendo la última como la correcta
+#' Indica las solicitudes de charla que son duplicados, devolviendo el ID de la correcta (la última)
 #'
 #' @param dataset datos de solicitudes de charlas
 #'
-#' @return vector lógico indicando si cada solicitud es un posible duplicado o no
-es_posible_duplicado_solicitud_charla <- function(dataset) {
-  duplicated(dataset$email, fromLast=TRUE) | duplicated(dataset$email, fromLast=FALSE)
+#' @return vector con ID de la solicitud correcta si es duplicado, NA si no
+referencia_duplicado_solicitud_charla <- function(dataset, campos_combrobacion) {
+
+  orden_inicial <- dataset$id
+  dataset_ordenado <- dataset %>% arrange(desc(timestamp)) # La última solicitud es la correcta
+  original_ids <- original_vs_duplicados(dataset_ordenado, campos_combrobacion)
+  original_ids_orden_inicial <- original_ids[match(orden_inicial, dataset_ordenado$id)]
+
+  return(original_ids_orden_inicial)
 }
 
 
