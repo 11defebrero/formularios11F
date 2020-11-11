@@ -40,3 +40,7 @@ packrat/lib*/
 # Data and web folders, in case they're created inside the package structure
 data/**
 web/**
+
+# json files
+*.json
+
