@@ -80,9 +80,9 @@ get_drive_json <- function(file_id, filename = NULL) {
                               path = tmpfile,
                               overwrite = TRUE, verbose = FALSE)
   
-  json_content <- rjson::fromJSON(file=filename)
+  json_content <- rjson::fromJSON(file = filename)
   
-  if (is.null(filename)) file.remove(tmpfile)
+  file.remove(filename)
   
   return(json_content)
 }
