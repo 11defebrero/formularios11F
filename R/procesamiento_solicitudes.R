@@ -235,7 +235,7 @@ solicitadas_restantes <- cbind(solicitadas_pendientes[ , 1:23], solicitadas_nive
 solicitadas_restantes <- solicitadas_restantes[ ,
                                         c("id", "procesado", "fallos",  "fallos_geolocalizacion",
                                           "timestamp", "nombre", "email", "centro",
-                                          "niveles", "tipos", "aforo", "videollamada",
+                                          "niveles", "tipos", "aforo", "herramientas_online",
                                           "ingles", "com_autonoma", "provincia",  "localidad",
                                           "direccion", "codpostal", "web", "telefono",
                                           "comentario", "lon", "lat") ]
