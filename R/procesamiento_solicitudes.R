@@ -232,13 +232,8 @@ solicitadas_niveles <- tidyr::unite(solicitadas_niveles, col = "niveles", sep=",
                                     remove=T, na.rm =T)
 
 solicitadas_restantes <- cbind(solicitadas_pendientes[ , 1:23], solicitadas_niveles)
-solicitadas_restantes <- solicitadas_restantes[ ,
-                                        c("id", "procesado", "fallos",  "fallos_geolocalizacion",
-                                          "timestamp", "nombre", "email", "centro",
-                                          "niveles", "tipos", "aforo", "herramientas_online",
-                                          "ingles", "com_autonoma", "provincia",  "localidad",
-                                          "direccion", "codpostal", "web", "telefono",
-                                          "comentario", "lon", "lat") ]
+solicitadas_restantes <- solicitadas_restantes[ , COLS_SOLICITUDES_CHARLAS ]
+
 
 return(solicitadas_restantes)
 
