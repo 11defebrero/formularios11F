@@ -75,6 +75,8 @@ get_charlas_concertadas_limpio <- function(file_id, filename=NULL) {
       timestamp = as.POSIXct(timestamp, format="%d/%m/%Y %T"),
       referencia_centro = stringr::str_pad(referencia_centro, width=10, pad=0, side="left"),
       codpostal = stringr::str_pad(codpostal, width=5, pad=0, side="left"),
+      n_charlas = as.numeric(n_charlas),
+      n_alumnos = as.numeric(n_alumnos),
       lon = as.numeric(lon),
       lat = as.numeric(lat)
     )
