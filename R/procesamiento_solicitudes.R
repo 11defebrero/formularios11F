@@ -6,9 +6,9 @@ COLS_SOLICITUDES_CHARLAS <- c(
   "timestamp",
   "nombre", "email", "centro",
   "niveles", "tipos", "aforo",
-  "herramientas_online", "ingles",
+  "pres_online", "herramientas_online", "idioma",
   "com_autonoma", "provincia", "localidad", "direccion", "codpostal",
-  "web", "telefono",
+  "web",
   "comentario",
   "lon", "lat"
 )
@@ -25,37 +25,39 @@ COLS_SOLICITUDES_CHARLAS <- c(
 #'         y nombres de columnas adaptados
 #' @export
 #'
-get_solicitudes_charlas_original <- function(file_id, filename=NULL) {
+get_solicitudes_charlas_original <- function(file_id, filename = NULL) {
 
-  get_drive_sheet(file_id, filename) %>%
+  data <- get_drive_sheet(file_id, filename) %>%
     dplyr::transmute(
       procesado = "",
       fallos = "",
       fallos_geolocalizacion = "",
       id_referencia = "",
-      timestamp = as.POSIXct(Timestamp, format="%d/%m/%Y %T"),
-      email = `Email address`,
+      timestamp = as.POSIXct(`Marca temporal`, format="%d/%m/%Y %T"),
+      email = `Dirección de correo electrónico`,
       nombre = `Nombre y apellidos de la persona que hace la solicitud`,
       centro = `Nombre del centro educativo`,
-      niveles = `Nivel o niveles para los que se solicita la charla`,
-      tipos = `¿Qué tipo de charlas preferís?`,
-      aforo = `Número estimado de asistentes`,
-      herramientas_online = `¿Qué herramienta os gustaría que se utilizara preferentemente si la charla fuese online?`,
-      ingles = `¿Podría ser en inglés?`,
+      web = `Página web del centro educativo`,
       com_autonoma = `Comunidad autónoma`,
       provincia = Provincia,
       localidad = Localidad,
       direccion = `Dirección (nombre y número de la vía)`,
       codpostal = `Código postal`,
-      web = `Página web del centro educativo`,
-      telefono = `Teléfono de contacto`,
+      niveles = `Nivel o niveles para los que se solicita la charla`,
+      tipos = `¿Qué tipo de charlas preferís?`,
+      aforo = `Número estimado de asistentes`,
+      pres_online = `¿Cómo os gustaría que se realizara la charla?`,
+      herramientas_online = `En caso de ser online, ¿qué herramienta os gustaría que se utilizara preferentemente?`,
+      idioma = `Preferiblemente, ¿en qué idioma os gustaría recibir la charla?`,
+      # telefono = `Teléfono de contacto`,
+      tratdatos = `Tratamiento de datos`,
       comentario = `¿Hay algo más que quieras añadir?`
     ) %>%
     genera_id() %>%
     dplyr::select(setdiff(COLS_SOLICITUDES_CHARLAS, c("lon", "lat")))
-
+    
+  return(data)
 }
-
 
 
 #' Get solicitudes charlas (fichero limpio)
@@ -68,7 +70,7 @@ get_solicitudes_charlas_original <- function(file_id, filename=NULL) {
 #'
 get_solicitudes_charlas_limpio <- function(file_id, filename=NULL) {
 
-  get_drive_sheet(file_id, filename) %>%
+  data <- get_drive_sheet(file_id, filename) %>%
     dplyr::select(COLS_SOLICITUDES_CHARLAS) %>%
     dplyr::mutate(
       id = stringr::str_pad(id, width=10, pad=0, side="left"),
@@ -77,9 +79,10 @@ get_solicitudes_charlas_limpio <- function(file_id, filename=NULL) {
       lon = as.numeric(lon),
       lat = as.numeric(lat)
     )
+  
+  return(data)
 
 }
-
 
 
 #' Upload solicitudes charlas (fichero limpio)
@@ -99,8 +102,6 @@ upload_solicitudes_charlas_limpio <- function(dataset, file_id) {
     upload_drive_sheet(file_id)
 
 }
-
-
 
 #' Limpia campos del dataset de solicitudes de charlas
 #'
@@ -140,8 +141,6 @@ geolocaliza_solicitudes_charlas <- function(dataset) {
 
 }
 
-
-
 #' Marca duplicados del dataset de solicitudes de charlas, en la columna "procesado"
 #'
 #' @param dataset datos de solicitudes de charlas
@@ -150,7 +149,7 @@ geolocaliza_solicitudes_charlas <- function(dataset) {
 #' @export
 marca_duplicados_solicitudes_charlas <- function(dataset) {
 
-  campos_duplicado <- c("nombre", "email", "centro", "niveles", "tipos", "telefono")
+  campos_duplicado <- c("nombre", "email", "centro", "niveles", "tipos")
   campos_posible <- c("email")
 
   dataset %>%
@@ -165,8 +164,6 @@ marca_duplicados_solicitudes_charlas <- function(dataset) {
 
 }
 
-
-
 #' Indica las solicitudes de charla que son duplicados,
 #' manteniendo la última como la correcta
 #'
@@ -176,8 +173,6 @@ marca_duplicados_solicitudes_charlas <- function(dataset) {
 es_duplicado_solicitud_charla <- function(dataset, campos_combrobacion) {
   !is.na(referencia_duplicado_solicitud_charla(dataset, campos_combrobacion))
 }
-
-
 
 #' Indica las solicitudes de charla que son duplicados, devolviendo el ID de la correcta (la última)
 #'
@@ -250,4 +245,3 @@ return(solicitadas_restantes)
   #   dplyr::filter(niveles != "")
   # todo el código comentado es lo que había antes
 }
-

@@ -20,7 +20,7 @@ get_drive_sheet <- function(file_id, filename = NULL) {
                           col_types = readr::cols(.default=readr::col_character()),
                           locale = readr::locale(encoding="UTF-8"),
                           na = c("NA", "no aplica", "")
-                          )
+  )
 
   if (is.null(filename)) file.remove(tmpfile)
 
@@ -65,25 +65,25 @@ upload_file_to_drive <- function(local_path, drive_folder_id) {
   message("\nDone.")
 }
 
-#' Get drive json 
-#' 
+#' Get drive json
+#'
 #' @param file_id ID de config.json
 #' @param filename Nombre del fichero temporal que se descarga de drive.
 #'
 #' @return datos de configuracion, fundamentalmente ids de sheets y formularios en drive
 #'
 get_drive_json <- function(file_id, filename = NULL) {
-  
+
   tmpfile <- ifelse(!is.null(filename), filename, tempfile() )
-  
+
   googledrive::drive_download(file = googledrive::as_id(file_id),
                               path = tmpfile,
                               overwrite = TRUE, verbose = FALSE)
-  
+
   json_content <- rjson::fromJSON(file = filename)
-  
+
   file.remove(filename)
-  
+
   return(json_content)
 }
 
