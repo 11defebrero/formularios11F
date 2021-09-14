@@ -41,9 +41,9 @@ FUNCIONES_PROCESAMIENTO_CAMPOS <- list(
     "fun_corrige" = function(...) corrige_si_no(...),
     "fun_valida" = function(...) es_valido_si_no(...)
   ),
-  "ingles" = list(
-    "fun_corrige" = function(...) corrige_ingles(...),
-    "fun_valida" = function(...) es_valido_ingles(...)
+  "idioma" = list(
+    "fun_corrige" = function(...) corrige_idioma(...),
+    "fun_valida" = function(...) es_valido_idioma(...)
   ),
   "institucion_ponente" = list(
     "fun_corrige" = function(...) corrige_centro(...),
@@ -85,10 +85,6 @@ FUNCIONES_PROCESAMIENTO_CAMPOS <- list(
     "fun_corrige" = function(...) corrige_referencia(...),
     "fun_valida" = function(...) es_valida_referencia(...)
   ),
-  "telefono" = list(
-    "fun_corrige" = function(...) corrige_telefono(...),
-    "fun_valida" = function(...) es_valido_telefono(...)
-  ),
   "tipo_charla" = list(
     "fun_corrige" = function(...) corrige_tipo_charla(...),
     "fun_valida" = function(...) es_valido_tipo_charla(...)
@@ -104,10 +100,6 @@ FUNCIONES_PROCESAMIENTO_CAMPOS <- list(
   "unidad_divulgacion" = list(
     "fun_corrige" = function(...) corrige_comentario(...),
     "fun_valida" = function(...) es_valido_comentario(...)
-  ),
-  "videollamada" = list(
-    "fun_corrige" = function(...) corrige_videollamada(...),
-    "fun_valida" = function(...) es_valido_videollamada(...)
   ),
   "herramientas_online" = list(
     "fun_corrige" = function(...) corrige_herramientas_online(...),

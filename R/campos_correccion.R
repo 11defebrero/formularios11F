@@ -86,10 +86,9 @@ corrige_aforo <- function(aforos) {
 #' @param opciones_videollamada vector de opciones de videollamada
 #'
 #' @return vector de opciones de videollamada corregidas
-corrige_videollamada <- function(opciones_videollamada) {
-  return(opciones_videollamada)
+corrige_pres_online <- function(opciones_pres_online) {
+  return(opciones_pres_online)
 }
-
 
 
 #' Corrección campo de herramientas online
@@ -108,8 +107,8 @@ corrige_herramientas_online <- function(herramientas_online) {
 #' @param opciones_ingles vector de opciones de charla en inglés
 #'
 #' @return vector de opciones de charla en inglés corregidas
-corrige_ingles <- function(opciones_ingles) {
-  return(opciones_ingles)
+corrige_idioma <- function(opciones_idioma) {
+  return(opciones_idioma)
 }
 
 
@@ -201,16 +200,6 @@ corrige_web <- function(webs) {
   return(webs)
 }
 
-#' Corrección campo de teléfono
-#'
-#' @param telefonos vector de teléfonos
-#'
-#' @return vector de teléfonos corregidos
-corrige_telefono <- function(telefonos) {
-  gsub("^\\+34", "", gsub(" ", "", telefonos))
-}
-
-
 
 #' Corrección campo de comentario
 #'
@@ -220,7 +209,6 @@ corrige_telefono <- function(telefonos) {
 corrige_comentario <- function(comentarios) {
   return(comentarios)
 }
-
 
 
 #' Corrección campo de referencia
