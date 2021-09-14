@@ -14,7 +14,7 @@ get_drive_sheet <- function(file_id, filename = NULL) {
   googledrive::drive_download(file = googledrive::as_id(file_id),
                               path = tmpfile,
                               type = "csv",
-                              overwrite = TRUE, verbose = FALSE)
+                              overwrite = TRUE)
 
   data <- readr::read_csv(tmpfile,
                           col_types = readr::cols(.default=readr::col_character()),
@@ -41,8 +41,7 @@ upload_drive_sheet <- function(dataset, file_id, filename = NULL) {
   write.csv(dataset, tmpfile, row.names=FALSE, quote=TRUE, na="")
 
   googledrive::drive_update(file = googledrive::as_id(file_id),
-                            media = tmpfile,
-                            verbose = FALSE)
+                            media = tmpfile)
 
   if (is.null(filename)) file.remove(tmpfile)
 
@@ -78,7 +77,7 @@ get_drive_json <- function(file_id, filename = NULL) {
 
   googledrive::drive_download(file = googledrive::as_id(file_id),
                               path = tmpfile,
-                              overwrite = TRUE, verbose = FALSE)
+                              overwrite = TRUE)
 
   json_content <- rjson::fromJSON(file = filename)
 
