@@ -65,11 +65,11 @@ es_valido_aforo <- function(aforos) {
 
 #' Validación campo de videollamada
 #'
-#' @param opciones_videollamada vector de opciones de videollamada
+#' @param opciones_pres_online vector de opciones de videollamada
 #'
 #' @return vector de booleans que indica si cada opción de videollamada es válida o no
-es_valido_videollamada <- function(opciones_videollamada) {
-  opciones_videollamada %in% c("Sí", "No")
+es_valido_pres_online <- function(pres_online) {
+  rep(TRUE, length(pres_online))
 }
 
 
@@ -88,8 +88,8 @@ es_valido_herramientas_online <- function(herramientas_online) {
 #' @param opciones_ingles vector de opciones de charla en inglés
 #'
 #' @return vector de booleans que indica si cada opción de charla en inglés es válida o no
-es_valido_ingles <- function(opciones_ingles) {
-  opciones_ingles %in% c("Sí", "No")
+es_valido_idioma <- function(idioma) {
+  rep(TRUE, length(idioma))
 }
 
 

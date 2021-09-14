@@ -116,9 +116,9 @@ FUNCIONES_PROCESAMIENTO_CAMPOS <- list(
     "fun_corrige" = function(...) corrige_si_no(...),
     "fun_valida" = function(...) es_valido_si_no(...)
   ),
-  "es_presencial" = list(
-    "fun_corrige" = function(...) corrige_si_no(...),
-    "fun_valida" = function(...) es_valido_si_no(...)
+  "pres_online" = list(
+    "fun_corrige" = function(...) corrige_pres_online(...),
+    "fun_valida" = function(...) es_valido_pres_online(...)
   ),
   "titulo" = list(
     "fun_corrige" = function(...) corrige_comentario(...),
