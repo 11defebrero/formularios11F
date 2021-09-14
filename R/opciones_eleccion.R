@@ -1,3 +1,15 @@
+OPCIONES_PRES_ONLINE <- c("Presencial",
+                          "Online")
+
+
+OPCIONES_IDIOMA <- c(
+  "Castellano",
+  "Galego",
+  "Euskera",
+  "Català",
+  "Inglés"
+)
+
 
 
 OPCIONES_NIVEL <- c(
@@ -12,9 +24,10 @@ OPCIONES_NIVEL <- c(
 
 
 OPCIONES_TIPO_CHARLA <- c(
-  "La historia de científicas ilustres",
-  "Experiencias de científicas",
-  "Charla de contenido científico (física, química, tecnología, ciencias de la vida...)"
+  "Mujeres referentes y/o pioneras en áreas STEM.",
+  "Experiencias personales de mujeres STEM.",
+  "Talleres u otra actividad en la que participe el alumnado.",
+  "Otro"
 )
 
 
