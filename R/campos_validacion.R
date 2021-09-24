@@ -202,8 +202,8 @@ es_valida_referencia <- function(referencias) {
 #' @param tipos vector de tipos de charla
 #'
 #' @return vector de booleans que indica si cada tipo de charla es válido o no
-es_valido_pres_online <- function(tipos) {
-  tipos %in% c("Presencial", "Online")
+es_valido_pres_online <- function(pres_online) {
+  rep(TRUE, length(pres_online))
 }
 
 
