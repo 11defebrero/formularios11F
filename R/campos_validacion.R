@@ -152,13 +152,15 @@ es_valido_codigo_postal <- function(cod_postales) {
 #'
 #' @return vector de booleans que indica si cada web es válida o no
 es_valido_web <- function(webs) {
-  web_existe <- rep(FALSE, times=length(webs))
+  web_existe <- rep(FALSE, times = length(webs))
   for (i in which(!is.na(webs))) {
     try({
       web_req <- httr::GET(webs[i])
       web_existe[i] <- TRUE
-    }, silent=TRUE)
+    }, silent = TRUE)
+    print(i)
   }
+
   return(web_existe | is.na(webs))
 }
 
