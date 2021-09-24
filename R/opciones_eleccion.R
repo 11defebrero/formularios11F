@@ -35,18 +35,18 @@ OPCIONES_TIPO_CHARLA <- c(
 OPCIONES_CCAA_INE <- c("Andalucía", "Aragón", "Asturias", "Illes Balears", "Canarias", "Cantabria",
                        "Castilla y León", "Castilla - La Mancha", "Cataluña", "Comunitat Valenciana",
                        "Extremadura", "Galicia", "Comunidad de Madrid", "Región de Murcia", "Navarra",
-                       "País Vasco", "La Rioja", "Ceuta", "Melilla", "Fuera de España")
+                       "País Vasco", "La Rioja", "Ceuta", "Melilla")
 
 
 # Fuente: http://www.ine.es/daco/daco42/codmun/cod_provincia_estandar.htm
-OPCIONES_PROVINCIA_INE <- c("Albacete", "Alicante / Alacant", "Almería", "Araba / Álava", "Asturias", "Ávila",
+OPCIONES_PROVINCIA_INE <- c("Albacete", "Alicante/Alacant", "Almería", "Araba/Álava", "Asturias", "Ávila",
                             "Badajoz", "Illes Balears", "Barcelona", "Bizkaia", "Burgos", "Cáceres", "Cádiz",
                             "Cantabria", "Castellón/Castelló", "Ceuta", "Ciudad Real", "Córdoba", "A Coruña",
                             "Cuenca", "Gipuzkoa", "Girona", "Granada", "Guadalajara", "Huelva", "Huesca",
                             "Jaén", "León", "Lleida", "Lugo", "Madrid", "Málaga", "Melilla", "Murcia", "Navarra",
                             "Ourense", "Palencia", "Las Palmas", "Pontevedra", "La Rioja", "Salamanca",
                             "Santa Cruz de Tenerife", "Segovia", "Sevilla", "Soria", "Tarragona", "Teruel",
-                            "Toledo", "Valencia / València", "Valladolid", "Zamora", "Zaragoza", "Fuera de España")
+                            "Toledo", "Valencia/València", "Valladolid", "Zamora", "Zaragoza")
 
 
 
