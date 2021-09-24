@@ -39,14 +39,14 @@ OPCIONES_CCAA_INE <- c("Andalucía", "Aragón", "Asturias", "Illes Balears", "Ca
 
 
 # Fuente: http://www.ine.es/daco/daco42/codmun/cod_provincia_estandar.htm
-OPCIONES_PROVINCIA_INE <- c("Albacete", "Alicante/Alacant", "Almería", "Araba/Álava", "Asturias", "Ávila",
+OPCIONES_PROVINCIA_INE <- c("Albacete", "Alicante / Alacant", "Almería", "Araba / Álava", "Asturias", "Ávila",
                             "Badajoz", "Illes Balears", "Barcelona", "Bizkaia", "Burgos", "Cáceres", "Cádiz",
                             "Cantabria", "Castellón/Castelló", "Ceuta", "Ciudad Real", "Córdoba", "A Coruña",
                             "Cuenca", "Gipuzkoa", "Girona", "Granada", "Guadalajara", "Huelva", "Huesca",
                             "Jaén", "León", "Lleida", "Lugo", "Madrid", "Málaga", "Melilla", "Murcia", "Navarra",
                             "Ourense", "Palencia", "Las Palmas", "Pontevedra", "La Rioja", "Salamanca",
                             "Santa Cruz de Tenerife", "Segovia", "Sevilla", "Soria", "Tarragona", "Teruel",
-                            "Toledo", "Valencia/València", "Valladolid", "Zamora", "Zaragoza")
+                            "Toledo", "Valencia / València", "Valladolid", "Zamora", "Zaragoza")
 
 OPCIONES_ORGANIZADOR <- c("Otra entidad (centro de investigación, universidad, asociación, comercio, etc.)",
                           "Un centro educativo (no universitario)")

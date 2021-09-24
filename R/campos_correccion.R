@@ -260,7 +260,7 @@ corrige_si_no <- function(si_no) {
 #'
 #' @return vector de imagenes corregidas
 corrige_imagen <- function(imagenes) {
-  gsub("open?id=", "uc?export=view&id=", imagenes, fixed=TRUE)
+  gsub("open?id=", "uc?export=view&id=", imagenes, fixed = TRUE)
 }
 
 
