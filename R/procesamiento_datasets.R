@@ -74,7 +74,7 @@ geolocaliza_centros <- function(dataset, col_codpostal,
 
   names(codpostales)[1] <- col_codpostal
 
-  dataset <- dataset %>% dplyr::left_join(codpostales, by=col_codpostal)
+  dataset <- dataset %>% dplyr::left_join(codpostales, by = col_codpostal)
 
 
   dataset[[col_fallo]][is.na(dataset[[col_fallo]])] <- ""
