@@ -1,7 +1,6 @@
 OPCIONES_PRES_ONLINE <- c("Presencial",
                           "Online")
 
-
 OPCIONES_IDIOMA <- c(
   "Castellano",
   "Galego",
@@ -10,7 +9,9 @@ OPCIONES_IDIOMA <- c(
   "Inglés"
 )
 
-
+OPCIONES_HERRAMIENTAS <- c("Skype", "Zoom", "Webex", "Microsoft Teams",
+                           "Google Meet", "Jitsi", "Moodle BB Collaborate", "Otras"
+)
 
 OPCIONES_NIVEL <- c(
   paste0("Infantil ", 3:5, " años"),
@@ -22,6 +23,9 @@ OPCIONES_NIVEL <- c(
   "Otros"
 )
 
+OPCIONES_CICLOS <- c("Infantil", "Primaria", "ESO", "Bachillerato",
+                     "Formación profesional", "Adultos", "Otros"
+)
 
 OPCIONES_TIPO_CHARLA <- c(
   "Mujeres referentes y/o pioneras en áreas STEM.",
