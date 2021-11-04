@@ -27,13 +27,18 @@ OPCIONES_CICLOS <- c("Infantil", "Primaria", "ESO", "Bachillerato",
                      "Formación profesional", "Adultos", "Otros"
 )
 
+# OPCIONES_TIPO_CHARLA <- c(
+#   "Mujeres referentes y/o pioneras en áreas STEM.",
+#   "Experiencias personales de mujeres STEM.",
+#   "Talleres u otra actividad en la que participe el alumnado.",
+#   "Otro"
+# )
+
 OPCIONES_TIPO_CHARLA <- c(
   "Mujeres referentes y/o pioneras en áreas STEM.",
   "Experiencias personales de mujeres STEM.",
-  "Talleres u otra actividad en la que participe el alumnado.",
-  "Otro"
+  "Talleres u otra actividad en la que participe el alumnado."
 )
-
 
 # Fuente: https://www.ine.es/daco/daco42/codmun/cod_ccaa.htm
 OPCIONES_CCAA_INE <- c("Andalucía", "Aragón", "Asturias", "Illes Balears", "Canarias", "Cantabria",
