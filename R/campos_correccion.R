@@ -20,6 +20,14 @@ corrige_email <- function(email) {
   tolower(email)
 }
 
+#' Corrección campo de teléfono
+#'
+#' @param telefonos vector de teléfonos
+#'
+#' @return vector de teléfonos corregidos
+corrige_telefono <- function(telefonos) {
+  gsub("^\\+34", "", gsub(" ", "", telefonos))
+}
 
 
 #' Corrección campo de centro
