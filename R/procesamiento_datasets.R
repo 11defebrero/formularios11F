@@ -30,7 +30,7 @@ limpia_campos <- function(dataset, campos, col_fallos) {
 
   for (campo in campos) {
 
-    cat("Procesando ", campo, "... ", sep="")
+    cat("Procesando ", campo, "... ", sep = "")
 
     fun_corrige_campo <- FUNCIONES_PROCESAMIENTO_CAMPOS[[campo]]$fun_corrige
     dataset[[campo]] <- fun_corrige_campo(dataset[[campo]])

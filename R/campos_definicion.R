@@ -152,7 +152,7 @@ FUNCIONES_PROCESAMIENTO_CAMPOS <- list(
     "fun_corrige" = function(...) corrige_comentario(...),
     "fun_valida" = function(...) es_valido_comentario(...)
   ),
-  "telf" = list(
+  "telefono" = list(
     "fun_corrige" = function(...) corrige_telefono(...),
     "fun_valida" = function(...) es_valido_telefono(...)
   ),
