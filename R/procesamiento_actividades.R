@@ -95,7 +95,7 @@ get_actividades_original <- function(file_id, filename=NULL) {
 
       audiencia = ifelse(es_presencial == "Sí", `Público`, `Dirigido a`),
       email2 = ifelse(es_presencial == "Sí", `Email de información y/o reservas`, `Email de información`),
-      telf = ifelse(es_presencial == "Sí", `Teléfono de contacto (opcional)_1`,`Teléfono de contacto (opcional)`),
+      telefono = ifelse(es_presencial == "Sí", `Teléfono de contacto (opcional)_1`,`Teléfono de contacto (opcional)`),
       fecha = ifelse(es_presencial == "Sí", `Fecha_1`, `Fecha`),
       hora_inicio = ifelse(es_presencial == "Sí", `Hora de inicio_1`, `Hora de inicio`),
       hora_fin = ifelse(es_presencial == "Sí", `Hora de fin_1`, `Hora de fin`),

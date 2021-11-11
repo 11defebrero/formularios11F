@@ -8,7 +8,7 @@ COLS_CHARLAS_CONCERTADAS <- c(
   "es_charla_solicitada", "referencia_centro", "centro",
   "com_autonoma", "provincia", "localidad", "codpostal",
   "ponente", "institucion_ponente", "email_ponente",
-  "titulo_charla", "tipo_charla", "niveles", "n_charlas", "n_alumnos",
+  "titulo_charla", "pres_online", "niveles", "n_charlas", "n_alumnos",
   "unidad_divulgacion",
   "lon", "lat"
 )
@@ -33,8 +33,8 @@ get_charlas_concertadas_original <- function(file_id, filename=NULL) {
       fallos = "",
       fallos_geolocalizacion = "",
       fallos_validacion = "",
-      timestamp = as.POSIXct(`Marca temporal`, format="%d/%m/%Y %T"),
-      email = `Dirección de correo electrónico`,
+      timestamp = as.POSIXct(coalesce(`Marca temporal`,`Timestamp`), format="%d/%m/%Y %T"),
+      email = coalesce(`Dirección de correo electrónico`,`Email address`),
       es_charla_solicitada = `¿Está el centro educativo con el que has contactado en la lista de 'Charlas Solicitadas'?`,
       referencia_centro = `Código de referencia de la solicitud`,
       centro = coalesce(`Nombre del centro (check)`, `Nombre del centro`),
@@ -46,7 +46,7 @@ get_charlas_concertadas_original <- function(file_id, filename=NULL) {
       institucion_ponente = `Institución ponente(s)`,
       email_ponente = `e-mail de contacto de ponente (no se publicará en la web)`,
       titulo_charla = `Título de la charla`,
-      tipo_charla = `Tipo de charla`,
+      pres_online = `Tipo de charla`,
       niveles = `Cursos/s en el/los que se impartirá la charla`,
       n_charlas = `Número de charlas que se van a impartir en este centro con este título`,
       n_alumnos = `Número aproximado de estudiantes que asistirán a las charlas`,
