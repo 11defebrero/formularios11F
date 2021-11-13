@@ -19,6 +19,7 @@ OPCIONES_NIVEL <- c(
   paste0(1:4, "º ESO"),
   paste0(1:2, "º Bachillerato"),
   "Formación profesional",
+  "Educación especial",
   "Adultos",
   "Otros"
 )

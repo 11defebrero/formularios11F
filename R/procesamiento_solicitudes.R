@@ -6,7 +6,7 @@ COLS_SOLICITUDES_CHARLAS <- c(
   "timestamp",
   "nombre", "email", "centro",
   "niveles", "tipos", "aforo",
-  "pres_online", "herramientas_online", "idioma",
+  "formato", "herramientas_online", "idioma",
   "com_autonoma", "provincia", "localidad", "direccion", "codpostal",
   "web",
   "comentario",
@@ -46,7 +46,7 @@ get_solicitudes_charlas_original <- function(file_id, filename = NULL) {
       niveles = `Nivel o niveles para los que se solicita la charla`,
       tipos = `¿Qué tipo de charlas preferís?`,
       aforo = `Número estimado de asistentes`,
-      pres_online = `¿Cómo os gustaría que se realizara la charla?`,
+      formato = `¿Cómo os gustaría que se realizara la charla?`,
       herramientas_online = `En caso de ser online, ¿qué herramienta os gustaría que se utilizara preferentemente?`,
       idioma = `Preferiblemente, ¿en qué idioma os gustaría recibir la charla?`,
       # telefono = `Teléfono de contacto`,
@@ -55,7 +55,7 @@ get_solicitudes_charlas_original <- function(file_id, filename = NULL) {
     ) %>%
     genera_id() %>%
     dplyr::select(setdiff(COLS_SOLICITUDES_CHARLAS, c("lon", "lat")))
-    
+
   return(data)
 }
 
@@ -79,7 +79,7 @@ get_solicitudes_charlas_limpio <- function(file_id, filename=NULL) {
       lon = as.numeric(lon),
       lat = as.numeric(lat)
     )
-  
+
   return(data)
 
 }
@@ -216,12 +216,7 @@ solicitadas_pendientes <- todas[todas$estado == "pendiente", ]
 
 solicitadas_pendientes <- tidyr::pivot_wider(solicitadas_pendientes, names_from = niveles, values_from = niveles)
 
-solicitadas_niveles <- solicitadas_pendientes[ ,
-                                               c("Infantil 3 años", "Infantil 4 años", "Infantil 5 años",
-            "1º Primaria",  "2º Primaria", "3º Primaria", "4º Primaria", "5º Primaria", "6º Primaria",
-            "1º ESO", "2º ESO", "3º ESO", "4º ESO",
-            "1º Bachillerato", "2º Bachillerato",
-            "Formación profesional", "Adultos", "Otros") ]
+solicitadas_niveles <- solicitadas_pendientes[ , OPCIONES_NIVEL]
 
 solicitadas_niveles <- tidyr::unite(solicitadas_niveles, col = "niveles", sep=", ",
                                     remove=T, na.rm =T)
