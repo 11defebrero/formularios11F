@@ -163,6 +163,10 @@ FUNCIONES_PROCESAMIENTO_CAMPOS <- list(
   "imagen" = list(
     "fun_corrige" = function(...) corrige_imagen(...),
     "fun_valida" = function(...) es_valido_imagen(...)
+  ),
+  "es_presencial" = list(
+    "fun_corrige" = function(...) corrige_si_no(...),
+    "fun_valida" = function(...) es_valido_si_no(...)
   )
 )
 
