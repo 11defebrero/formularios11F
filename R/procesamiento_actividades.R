@@ -17,7 +17,7 @@ COLS_ACTIVIDADES_LIMPIO <- c(
   "es_presencial",
 
   # comunes presencial y no presencial
-  "audiencia", "email2",  "telf" ,
+  "audiencia", "email2",  "telefono" ,
   "fecha" , "hora_inicio" ,  "hora_fin",
   "organiza",  "patrocina", "imagen",
 
@@ -40,7 +40,7 @@ COLS_OTRAS_PRESENCIALES <- c(
   "titulo", "es_centro", "es_presencial",
 
   # presencial
-  "tipo",  "audiencia",  "reserva",  "email2",  "telf" , "des",
+  "tipo",  "audiencia",  "reserva",  "email2",  "telefono" , "des",
   "web",  "hora_inicio" ,  "hora_fin", "espacio", "direccion",  "codpostal", "localidad",
   "provincia",  "com_autonoma",   "organiza",  "patrocina", "imagen",
   "lon", "lat"
@@ -51,7 +51,7 @@ COLS_OTRAS_NO_PRESENCIALES <- c(
   "titulo", "es_centro", "es_presencial",
 
   # no presencial
-  "tipo",  "audiencia", "email2", "telf", "des", "web", "fecha",
+  "tipo",  "audiencia", "email2", "telefono", "des", "web", "fecha",
   "hora_inicio", "hora_fin", "organiza", "patrocina", "imagen"
 )
 
@@ -200,7 +200,7 @@ limpia_actividades <- function(dataset) {
   campos_comunes_todas <- c("email", "nombre", "titulo", "es_centro",
                             "tipo" , "web",  "des")
   campos_comunes_centrosypresenciales <- c("codpostal", "localidad", "provincia", "com_autonoma")
-  campos_comunes_otras <- c("es_presencial", "audiencia", "email2",  "telf" ,
+  campos_comunes_otras <- c("es_presencial", "audiencia", "email2",  "telefono" ,
                             "organiza",  "patrocina", "imagen")
 
 dataset <- dataset %>%
