@@ -207,7 +207,7 @@ concertadas2 <- concertadas %>%
 
 concertadas_extendida <- tidyr::separate_rows(concertadas2, niveles, sep = ", ")
 
-solicitudes_restantes_extendida <- tidyr::separate_rows(solicitudes_restantes, niveles, sep = ", ")
+solicitudes_restantes_extendida <- tidyr::separate_rows(dataset, niveles, sep = ", ")
 
 # Quiero todas las solicitudes
 todas <- merge(solicitudes_restantes_extendida, concertadas_extendida, all.x = T)

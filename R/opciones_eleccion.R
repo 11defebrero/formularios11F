@@ -19,10 +19,19 @@ OPCIONES_NIVEL <- c(
   paste0(1:4, "º ESO"),
   paste0(1:2, "º Bachillerato"),
   "Formación profesional",
-  "Educación especial",
   "Adultos",
   "Otros"
 )
+
+#TODO el año que viene se puede desglosar más la FP
+# OPCIONES_NIVEL <- c(
+#   "Formación profesional básica",
+#   "Formación profesional de grado medio",
+#   "Formación profesional de grado superior",
+#   "Educación especial",
+#   "Aula de compensación educativa",
+# )
+
 
 OPCIONES_CICLOS <- c("Infantil", "Primaria", "ESO", "Bachillerato",
                      "Formación profesional", "Adultos", "Otros"
