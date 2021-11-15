@@ -94,8 +94,8 @@ corrige_aforo <- function(aforos) {
 #' @param opciones_videollamada vector de opciones de videollamada
 #'
 #' @return vector de opciones de videollamada corregidas
-corrige_pres_online <- function(opciones_pres_online) {
-  return(opciones_pres_online)
+corrige_formato <- function(opciones_formato) {
+  return(opciones_formato)
 }
 
 
