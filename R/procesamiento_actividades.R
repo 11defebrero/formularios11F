@@ -1,4 +1,38 @@
 
+# COLS_ACTIVIDADES_ORIGINAL <- c(
+#   "Timestamp",	"Email address", "Tu nombre",
+#   "Título de la actividad",	"La actividad está organizada por",
+#   "Nombre del centro educativo",
+#
+#   "Código postal",	"Municipio",	"Provincia",	"Comunidad Autónoma",
+#   "Tipo de actividad programada",
+#   "Enlace a web del centro donde se explique la actividad",
+#   "Descripción de la actividad",
+#   "Ya estás llegando al final.",
+#
+#   #
+#
+#   "Es una actividad...",	"Tipo de actividad",	"Dirigido a",
+#   "Email de información",	"Teléfono de contacto (opcional)",
+#   "Descripción de la actividad",
+#   "Página web de la actividad",
+#   "Fecha",	"Hora de inicio",	"Hora de fin",	"Organiza",	"Entidades patrocinadoras y/o colaboradoras",
+#   "Imagen",
+#   "Ya estás llegando al final.",
+#
+#   #
+#
+#   "Tipo de actividad", "Público", "Reserva",
+#   "Email de información y/o reservas", "Teléfono de contacto (opcional)",
+#   "Descripción de la actividad",
+#   "Página web de la actividad",
+#   "Fecha",  "Hora de inicio",	"Hora de fin",	"Espacio donde se va a desarrollar la actividad",
+#   "Dirección (nombre y número de la vía)",
+#   "Código postal",	"Municipio",	"Provincia",	"Comunidad Autónoma",	"Organiza",	"Entidades patrocinadoras y/o colaboradoras",
+#   "Imagen",
+#   "Ya estás llegando al final."
+# )
+
 COLS_ACTIVIDADES_LIMPIO <- c(
   "id", "procesado", "fallos_validacion", "fallos_geo",
   "clase_actividad",
@@ -76,8 +110,8 @@ get_actividades_original <- function(file_id, filename=NULL) {
       clase_actividad = "",
       timestamp = as.POSIXct(`Timestamp`, format="%d/%m/%Y %T"),
       email = `Email address`,
-      nombre = `Tu nombre (no se publicará en la web)`,
-      titulo = `Título de la actividad (100 caracteres máximo)`,
+      nombre = `Tu nombre`,
+      titulo = `Título de la actividad`,
       es_centro = ifelse(`La actividad está organizada por`== "Un centro educativo (no universitario)", "Sí", "No"),
 
       # datos de localizacion comunes
@@ -101,7 +135,7 @@ get_actividades_original <- function(file_id, filename=NULL) {
       hora_fin = ifelse(es_presencial == "Sí", `Hora de fin_1`, `Hora de fin`),
       reserva = `Reserva`,
       espacio = `Espacio donde se va a desarrollar la actividad`,
-      direccion = `Dirección (nombre y número de la vía)`, # solo en presenciales
+      direccion = `Dirección`, # solo en presenciales
 
       organiza = ifelse(es_centro == "No" & es_presencial == "Sí", `Organiza_1`, `Organiza`),
 
@@ -117,9 +151,9 @@ get_actividades_original <- function(file_id, filename=NULL) {
       web = ifelse(es_centro == "Sí", `Enlace a web del centro donde se explique la actividad`,
                    ifelse(es_presencial == "Sí", `Página web de la actividad_1`, `Página web de la actividad` )),
 
-      des = ifelse(es_centro == "Sí", `Descripción de la actividad (500 caracteres máximo)`,
-                   ifelse(es_presencial == "Sí",`Descripción de la actividad (1000 caracteres máximo)_1`,
-                          `Descripción de la actividad (1000 caracteres máximo)`))
+      des = ifelse(es_centro == "Sí", `Descripción de la actividad`,
+                   ifelse(es_presencial == "Sí",`Descripción de la actividad_1`,
+                          `Descripción de la actividad`))
     ) %>%
     mutate(
       clase_actividad = case_when(
