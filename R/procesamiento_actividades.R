@@ -148,7 +148,7 @@ get_actividades_original <- function(file_id, filename=NULL) {
       tipo = ifelse(es_centro == "Sí", `Tipo de actividad programada`,
                     ifelse(es_presencial == "Sí",`Tipo de actividad_1`,`Tipo de actividad`)),
 
-      web = ifelse(es_centro == "Sí", `Enlace a web del centro donde se explique la actividad`,
+      web = ifelse(es_centro == "Sí", `Enlace a la web del centro donde se explique la actividad`,
                    ifelse(es_presencial == "Sí", `Página web de la actividad_1`, `Página web de la actividad` )),
 
       des = ifelse(es_centro == "Sí", `Descripción de la actividad`,
