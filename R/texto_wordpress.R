@@ -50,7 +50,7 @@ texto_actividad <- function(info) {
     "**Organiza**: ", info$organiza, "\n",
     ifelse(!is.na(info$patrocina), paste0("**Patrocina**: ", info$patrocina, "\n"), ""),
     "**Email de contacto**: ", info$email2, "\n",
-    ifelse(!is.na(info$telf), paste0("**Teléfono de contacto**: ", info$telf, "\n"), ""),
+    ifelse(!is.na(info$telefono), paste0("**Teléfono de contacto**: ", info$telefono, "\n"), ""),
     ifelse(!is.na(info$web), paste0("**Más información**: ", info$web, "\n"), "")
   )
 
