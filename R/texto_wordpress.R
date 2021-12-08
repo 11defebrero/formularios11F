@@ -1,3 +1,30 @@
+#' Genera el cuerpo del mail que se envía a wordpress
+#'
+#' @param info información de la actividad (lista)
+#'
+#' @return cuerpo del post
+#' @export
+cuerpo_mail_actividad <- function(info) {
+
+  imagen <- imagen_actividad(info)
+  cabecera <- cabecera_actividad(info)
+  texto <- texto_actividad(info)
+  category <- paste0("[category actividades ", config$edicion, "]")
+  tags2 <- paste0("[tags ", toString(paste0(tags)), "]")
+  status <- "[status pending]"
+  fin <- "[end]"
+
+  return(paste("<p>", imagen,"</p>",
+               "<p>", cabecera, "</p>",
+               "<p>", texto, "</p>",
+               "<p>", category, "</p>",
+               "<p>", tags2, "</p>",
+               "<p>", status, "</p>",
+               "<br>", fin)
+  )
+
+}
+
 
 #' Genera la cabecera del post de wordpress de la actividad
 #'
@@ -10,7 +37,7 @@ cabecera_actividad <- function(info) {
   info$localidad <- stringr::str_to_title(info$localidad)
 
   paste0(
-    "**",
+    "<b>",
     info$tipo, ".",
     ifelse(info$clase_actividad == "PRESENCIAL", paste0(
       " ", info$espacio, ", ",
@@ -18,7 +45,7 @@ cabecera_actividad <- function(info) {
       info$provincia, "."
     ), ""),
     ifelse(!is.na(info$fecha), paste0(" ", info$fecha, " de febrero."), ""),
-    "**"
+    "</b>"
   )
 
 }
@@ -34,24 +61,26 @@ texto_actividad <- function(info) {
 
   info$localidad <- stringr::str_to_title(info$localidad)
 
-  paste0(
-    info$des, "\n\n\n",
-    "**Dirigido a**: ", info$audiencia, "\n",
-    ifelse(!is.na(info$hora_inicio), paste0("**Hora comienzo**: ", info$hora_inicio, "\n"), ""),
-    ifelse(!is.na(info$hora_inicio), paste0("**Hora finalización**: ", info$hora_fin, "\n"), ""),
+  gsub("\n", "<br>",
+    paste0(
+    info$des, "<br> <br> <br>",
+    "<b>Dirigido a</b>: ", info$audiencia, "<br>",
+    ifelse(!is.na(info$hora_inicio), paste0("<b>Hora comienzo</b>: ", info$hora_inicio, "<br>"), ""),
+    ifelse(!is.na(info$hora_inicio), paste0("<b>Hora finalización</b>: ", info$hora_fin, "<br>"), ""),
     ifelse(info$clase_actividad == "PRESENCIAL", paste0(
-      "**Dirección**: ", paste0(
+      "<b>Dirección</b>: ", paste0(
         info$direccion, ", ", info$codpostal, ", ",
         ifelse(info$localidad != info$provincia, paste0(info$localidad, ", "), ""),
         info$provincia, ", ", info$com_autonoma
-      ), "\n",
-      "**Reserva**: ", info$reserva, "\n"
+      ), "<br>",
+      "<b>Reserva</b>: ", info$reserva, "<br>"
     ), ""),
-    "**Organiza**: ", info$organiza, "\n",
-    ifelse(!is.na(info$patrocina), paste0("**Patrocina**: ", info$patrocina, "\n"), ""),
-    "**Email de contacto**: ", info$email2, "\n",
-    ifelse(!is.na(info$telefono), paste0("**Teléfono de contacto**: ", info$telefono, "\n"), ""),
-    ifelse(!is.na(info$web), paste0("**Más información**: ", info$web, "\n"), "")
+    "<b>Organiza</b>: ", info$organiza, "<br>",
+    ifelse(!is.na(info$patrocina), paste0("**Patrocina**: ", info$patrocina, "<br>"), ""),
+    "<b>Email de contacto</b>: ", info$email2, "<br>",
+    ifelse(!is.na(info$telefono), paste0("<b>Teléfono de contacto</b>: ", info$telefono, "<br>"), ""),
+    ifelse(!is.na(info$web), paste0("<b>Más información</b>: ", info$web, "<br>"), "")
+  )
   )
 
 }
@@ -103,5 +132,19 @@ tags_actividad <- function(info, edicion) {
   )
 
   return(tags)
+}
+
+imagen_actividad <- function(info){
+
+  paste0("<img src=\"",
+         info$imagen,
+         "\" alt=\"Imagen de la actividad con título ",
+         info$titulo,
+         "\" align=\"center\" width=\"80%\" scale=\"0\">")
+
+  #   <img src="images/dinosaur.jpg"
+  # alt="La cabeza y el torso de un esqueleto de dinosaurio;
+  #          tiene una cabeza grande con dientes largos y afilados">
+
 }
 
