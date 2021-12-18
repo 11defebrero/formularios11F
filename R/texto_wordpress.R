@@ -76,7 +76,7 @@ texto_actividad <- function(info) {
       "<b>Reserva</b>: ", info$reserva, "<br>"
     ), ""),
     "<b>Organiza</b>: ", info$organiza, "<br>",
-    ifelse(!is.na(info$patrocina), paste0("**Patrocina**: ", info$patrocina, "<br>"), ""),
+    ifelse(!is.na(info$patrocina), paste0("<b>Patrocina</b>: ", info$patrocina, "<br>"), ""),
     "<b>Email de contacto</b>: ", info$email2, "<br>",
     ifelse(!is.na(info$telefono), paste0("<b>Teléfono de contacto</b>: ", info$telefono, "<br>"), ""),
     ifelse(!is.na(info$web), paste0("<b>Más información</b>: ", info$web, "<br>"), "")
