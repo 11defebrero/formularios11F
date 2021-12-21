@@ -125,7 +125,7 @@ get_actividades_original <- function(file_id, filename=NULL) {
 
       # otros: presenciales y no presenciales
       es_presencial = ifelse(`Es una actividad...` == "Presencial", "Sí",
-                             ifelse(`Es una actividad...` == "No presencial (web, programa de radio, etc)", "No", NA)),
+                             ifelse(`Es una actividad...` == "No presencial", "No", NA)),
 
       audiencia = ifelse(es_presencial == "Sí", `Público`, `Dirigido a`),
       email2 = ifelse(es_presencial == "Sí", `Email_1`, `Email`),
